@@ -1,0 +1,24 @@
+{
+  "name": "html-scraper",
+  "version": "1.0.0",
+  "description": "html scraper",
+  "author": "theworldcloud",
+  "license": "ISC",
+  "main": "dist/index.js",
+  "types": "dist/*.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest",
+    "start": "tsx ./test/test.ts",
+    "dev": "tsx --watch ./test/test.ts"
+  },
+  "devDependencies": {
+    "node-fetch": "^3.3.2",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5",
+    "vitest": "^1.6.0"
+  }
+}
