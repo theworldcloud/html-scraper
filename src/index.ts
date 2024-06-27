@@ -1,14 +1,9 @@
 import fetch from 'node-fetch';
-import { ScrapeElement } from "types";
+import { Document } from 'document';
 
-
-export class Scrape {
-    public html = "";
-
-    public async url(url: string) {
-        const response = await fetch(url);
-        this.html = await response.text();
-
-        return this;
-    }   
+export async function scrape(url: string): Promise<Document> {
+    const response = await fetch(url);
+    const html = await response.text();
+    
+    return new Document(html, url);
 }

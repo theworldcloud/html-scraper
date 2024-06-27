@@ -16,9 +16,12 @@
     "dev": "tsx --watch ./test/test.ts"
   },
   "devDependencies": {
+    "@stylistic/eslint-plugin": "^2.3.0",
+    "globals": "^15.6.0",
     "node-fetch": "^3.3.2",
     "tsx": "^4.11.0",
     "typescript": "^5.4.5",
+    "typescript-eslint": "^7.14.1",
     "vitest": "^1.6.0"
   }
 }
