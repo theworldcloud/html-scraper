@@ -1,7 +1,7 @@
 import { scrape } from "../src";
 
 async function test() {
-    const doc = await scrape("https://en.wikipedia.org/wiki/TypeScript");
+    const doc = await scrape("wikipedia.org-typescript");
     console.log(doc.url);
     console.log(" ");
 
