@@ -1,3 +1,4 @@
+import { _getTagHtml } from "utils/_getTagHtml";
 import { find } from "functions/find";
 
 export class Document {
@@ -12,8 +13,8 @@ export class Document {
         this.url = url;
         this.html = html;
 
-        [ this.head, this.html ] = _getTagContent(this.html, "head");
-        [ this.body, this.html ] = _getTagContent(this.html, "body");
+        [ this.head, this.html ] = _getTagHtml(this.html, "head");
+        [ this.body, this.html ] = _getTagHtml(this.html, "body");
         this.html = htmlOriginal;
     }
 
@@ -22,15 +23,4 @@ export class Document {
     }
 }
 
-function _getTagContent(html: string, tag: string) {
-    const regex = new RegExp(`<${tag}.*?>(.*?)<\/${tag}>`, "s");
-    const matchedhtml = html.match(regex)
-    if (!matchedhtml) return "";
 
-    const startIndex = html.indexOf(`<${tag}`);
-    const endIndex = html.indexOf(`</${tag}>`) + 8;
-    const htmltag = html.slice(startIndex, endIndex);
-    html = html.replace(htmltag, "");
-
-    return [ matchedhtml[0], html ];
-}

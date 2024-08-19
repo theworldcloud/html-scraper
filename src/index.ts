@@ -1,5 +1,5 @@
-import fetch from 'node-fetch';
-import { Document } from 'document';
+import fetch from "node-fetch";
+import { Document } from "document";
 
 export async function scrape(url: string): Promise<Document> {
     const response = await fetch(url);

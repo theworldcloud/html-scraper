@@ -1,7 +1,8 @@
 import { scrape } from "../src";
 
 async function test() {
-    const doc = await scrape("https://en.wikipedia.org/wiki/TypeScript");
+    // const doc = await scrape("https://en.wikipedia.org/wiki/TypeScript");
+    const doc = await scrape("https://www.lectio.dk/lectio/477/help/mainhelp.aspx");
     console.log(doc.url);
     console.log(" ");
 
@@ -13,11 +14,7 @@ async function test() {
 
     console.log(" ");
 
-    // scrape.find("main")
-    // scrape.find("footer");
-
-    // doc.find("div.mw-footer-container > footer > ul#footer-places");
-    const el = doc.find("div#p-personal > ul.vector-menu-content-list");
+    const el = doc.find(".infoText");
     console.log(el);
 }
 

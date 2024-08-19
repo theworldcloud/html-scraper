@@ -16,16 +16,6 @@ export class Element {
     public readonly attributes: Record<string, string | number | undefined>;
     public readonly data: Record<string, string | number | undefined>;
 
-    // public id = "";
-    // public class: Array<string> = [];
-
-    // public parent = "";
-    // public children: Array<string> = [];
-
-    // public content = "";
-    // public data: Record<string, string | number> = {};
-    // public href = "";
-
     constructor(html: string, tag: string, id: string | undefined, classes: Array<string>, parent: string, children: Array<string>, content: string, attributes: Object, data: Object) {
         this.html = html;
 
@@ -44,6 +34,4 @@ export class Element {
     // public find(selector: string) {
     //     return find(this.body, selector);
     // }
-
-
 }
