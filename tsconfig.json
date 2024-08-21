@@ -2,7 +2,9 @@
   "compileOnSave": true,
   "compilerOptions": {
     "target": "es2016", 
-    "lib": [ "es2021" ],
+    "lib": [
+      "es2021",
+    ],
     "module": "commonjs", 
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true, 
@@ -16,7 +18,7 @@
     "declaration": true,
     "allowJs": false,
     "emitDeclarationOnly": false,
-    "declarationMap": true,
+    "declarationMap": true
   },
   "include": [ "src/**/*.ts" ],
   "exclude": [ ]
