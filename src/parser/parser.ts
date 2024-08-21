@@ -1,5 +1,5 @@
 import { _removeTags } from "parser/_removeTags";
-import { _parseHead } from "./_parseHead";
+import { parseHead } from "./parseHead";
 
 const entities: Array<string> = [ "\n", "\t", "\r" ];
 
@@ -8,6 +8,6 @@ export function parse(html: string) {
     let tags = html.split(/(<[^>]+>)/).filter((element) => element.trim().length > 0);
     tags = _removeTags(tags);
 
-    const head = _parseHead(tags);
+    const head = parseHead(tags);
     return {};
 }

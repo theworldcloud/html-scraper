@@ -1,6 +1,6 @@
 import {regex} from "./regex";
 
-export function _parseHead(tags: Array<string>) {
+export function parseHead(tags: Array<string>) {
     const headOpenTag = tags.find(tag => tag.match(regex("<head.*>", "g")) !== null);
     const headCloseTag = tags.find(tag => tag.match(regex("</head.*>", "g")) !== null);
     if (!headOpenTag || !headCloseTag) return;
