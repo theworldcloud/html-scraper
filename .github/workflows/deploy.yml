@@ -51,10 +51,6 @@ jobs:
         with:
           name: documentation
           path: docs/.vitepress/dist
-          run: |
-            echo "$${{ github.repository }}"
-
-      
 
   deploy:
     environment:
@@ -68,6 +64,6 @@ jobs:
         id: deployment
         uses: actions/deploy@v4
         with:
-          repository: ${{ github.repository }}
+          repository: theworldcloud/html-scraper.git
           token: ${{ secrets.PAT }}
           ref: main
