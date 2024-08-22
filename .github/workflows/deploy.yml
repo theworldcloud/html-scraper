@@ -52,7 +52,7 @@ jobs:
   deploy:
     environment:
       name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      url: theworldcloud.github.io/html-scraper/
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
