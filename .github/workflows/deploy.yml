@@ -63,5 +63,5 @@ jobs:
         uses: actions/deploy@v4
         with:
           repository: ${{ github.repository }}
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.PAT }}
           ref: main
