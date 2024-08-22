@@ -49,7 +49,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: documentation
           path: docs/.vitepress/dist
 
   deploy:
@@ -62,8 +61,4 @@ jobs:
     steps:
       - name: Deploy to Github Pages
         id: deployment
-        uses: actions/deploy@v4
-        with:
-          repository: theworldcloud/html-scraper.git
-          token: ${{ secrets.PAT }}
-          ref: main
+        uses: actions/deploy-pages@v4
