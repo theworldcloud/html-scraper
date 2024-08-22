@@ -2,7 +2,6 @@ export default {
     lang: "en-US",
     title: "html-scraper",
     description: "A simple HTML scraper",
-    base: "/html-scraper/",
 
     themeConfig: {
         logo: "/assets/logo.svg",
