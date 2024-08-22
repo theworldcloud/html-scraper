@@ -16,6 +16,7 @@ concurrency:
 
 jobs:
   build:
+    name: Build
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -51,8 +52,8 @@ jobs:
 
   deploy:
     environment:
-      name: github-pages
-      url: theworldcloud.github.io/html-scraper/
+      name: html-scraper
+      url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
     name: Deploy
