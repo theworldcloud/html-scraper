@@ -39,5 +39,5 @@ jobs:
           name: production-files
           path: ./public
 
-      - name: build docs
+      - name: Build docs
         run: npm run docs:build
