@@ -23,12 +23,16 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: pnpm
-      - uses: pnpm/action-setup@v3
 
       - name: Setup pages
         uses: actions/configure-pages@v4
