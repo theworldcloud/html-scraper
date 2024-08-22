@@ -1,3 +1,4 @@
+import { ParsedDocumentHead } from "types";
 import {regex} from "./regex";
 
 export function parseHead(tags: Array<string>) {
@@ -13,6 +14,10 @@ export function parseHead(tags: Array<string>) {
     headTags.splice(titleStartIndex, titleEndIndex - titleStartIndex + 1);
 
     _getMetaTags(headTags);
+
+    const head: ParsedDocumentHead = {
+        title: title,
+    }
 }
 
 function _getDocumentTitle(tags: Array<string>): [ string, number, number ] {
