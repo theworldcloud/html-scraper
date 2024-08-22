@@ -3,6 +3,7 @@ export default {
     title: "html-scraper",
     description: "A simple HTML scraper",
     outDir: "../public",
+    base: "/html-scraper/",
 
     themeConfig: {
         logo: "/assets/logo.svg",
