@@ -52,7 +52,7 @@ jobs:
 
   deploy:
     environment:
-      name: html-scraper
+      name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     needs: build
     runs-on: ubuntu-latest
