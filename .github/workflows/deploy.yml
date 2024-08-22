@@ -62,5 +62,6 @@ jobs:
         id: deployment
         uses: actions/deploy@v4
         with:
+          persist-credentials: false
           repository: theworldcloud/html-scraper
           token: ${{ secrets.PAT }}
