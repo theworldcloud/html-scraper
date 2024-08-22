@@ -18,10 +18,11 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkou
+      - name: Checkout
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
+          uses: pnpm/action-setup@v3
 
       - name: Setup Node
         uses: actions/setup-node@v4
