@@ -1,23 +1,43 @@
 import { parse } from "./parser/parser";
+import { Response } from "node-fetch";
+import { ParsedDocumentElement } from "./types";
+import { find } from "./functions/find";
 
 export class Document {
-    public readonly url: string | undefined;
-    // public readonly html: string;
-    // public readonly head: string;
-    // public readonly body: string;
+    public readonly cookies: Record<string, string>;
 
-    constructor(html: string, url?: string) {
-        const htmlOriginal = html;
+    public readonly url: string | undefined;
+    public readonly html: string;
+    public readonly title: string;
+
+    private readonly elements: Array<ParsedDocumentElement>;
+
+    constructor(html: string, url: string, response: Response) {
+        const cookies: Record<string, string> = {};
+        const responseCookies = response.headers.get("set-cookie");
+        if (responseCookies) {
+            const cookieStrings = responseCookies.split(";");
+            cookieStrings.forEach(function(cookie) {
+                cookie = cookie.trim();
+                const [ key, value ] = cookie.split("=");
+                cookies[key] = value;
+            });
+        }
+
+        this.cookies = cookies;
+
         const parsedDocument = parse(html);
 
         this.url = url;
-        // this.html = html;
+        this.html = parsedDocument.html;
+        this.title = parsedDocument.head.title;
 
+        this.elements = parsedDocument.body.elements;
     }
 
-    // public find(selector: string) {
-    //     return find(this.body, selector);
-    // }
+    public find(selector: string) {
+        return find(this.elements, selector);
+    }
 }
 
 

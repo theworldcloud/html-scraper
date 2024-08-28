@@ -1,5 +1,5 @@
 import { ParsedDocumentHead } from "types";
-import {regex} from "./regex";
+import { regex } from "./regex";
 
 export function parseHead(tags: Array<string>) {
     const headOpenTag = tags.find(tag => tag.match(regex("<head.*>", "g")) !== null);
@@ -13,11 +13,17 @@ export function parseHead(tags: Array<string>) {
     const [ title, titleStartIndex, titleEndIndex ] = _getDocumentTitle(headTags);
     headTags.splice(titleStartIndex, titleEndIndex - titleStartIndex + 1);
 
-    _getMetaTags(headTags);
+
+    const metaTags = _getTags("meta", headTags);
+    const linkTags = _getTags("link", headTags);
 
     const head: ParsedDocumentHead = {
         title: title,
+        meta: metaTags,
+        link: linkTags
     }
+
+    return head;
 }
 
 function _getDocumentTitle(tags: Array<string>): [ string, number, number ] {
@@ -34,24 +40,31 @@ function _getDocumentTitle(tags: Array<string>): [ string, number, number ] {
     return [ content, startIndex, endIndex];
 }
 
-function _getMetaTags(tags: Array<string>) {
-    const metaTags: Array<Record<string, string>> = [];
-    console.log(tags);
+function _getTags(type: string, tags: Array<string>) {
+    const _tags: Array<Record<string, string>> = [];
 
-    // const elements = tags.filter(tag => tag.match(regex("<meta.*>", "g")) !== null);
-    // elements.forEach(function(element) {
-    //     const metaTag: Record<string, string> = {};
-    //     const attributes = element.match(regex("([a-z-]+)=\"([^\"]+)\"", "g"));
-    //     if (!attributes) return;
-    //
-    //     attributes.forEach(function(attribute) {
-    //         const [ key, value ] = attribute.split("=");
-    //         metaTag[key] = value;
-    //     });
-    //
-    //     console.log(metaTag);
-    // });
+    const elements = tags.filter(tag => tag.match(regex(`<${type}.*>`, "g")) !== null);
+    elements.forEach(function(element) {
+        element = element.replace(`<${type} `, "");
+        const _tag: Record<string, string> = {};
+
+        let attributes = element.match(regex(`(.*?)=(["|'])(.*?)(["|'])`, "g"));
+        if (!attributes) return;
 
 
-    // return metaTags;
+        attributes.forEach(function(attribute) {
+            attribute = attribute.trim();
+
+            const key = attribute.split("=")[0];
+            const values = attribute.match(regex(`(?<=["|'])(.*?)(?=["|'])`, "g"));
+            if (!values) return;
+
+            const value = values[0];
+            _tag[key] = value;
+        });
+
+        _tags.push(_tag);
+    });
+
+    return _tags;
 }

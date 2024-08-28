@@ -1,10 +1,7 @@
 import { find } from "functions/find";
-import { Object } from "types";
-
+import {ParsedDocumentElement} from "./types";
 
 export class Element {
-    public readonly html: string;
-
     public readonly tag: string;
     public readonly id: string | undefined;
     public readonly class: Array<string>;
@@ -16,9 +13,9 @@ export class Element {
     public readonly attributes: Record<string, string | number | undefined>;
     public readonly data: Record<string, string | number | undefined>;
 
-    constructor(html: string, tag: string, id: string | undefined, classes: Array<string>, parent: string, children: Array<string>, content: string, attributes: Object, data: Object) {
-        this.html = html;
+    private readonly elements: Array<ParsedDocumentElement>;
 
+    constructor(tag: string, id: string | undefined, classes: Array<string>, parent: string, children: Array<string>, content: string | undefined, attributes: Record<string, string | number>, data: Record<string, string | number>, elements: Array<ParsedDocumentElement>) {
         this.tag = tag;
         this.id = id;
         this.class = classes;
@@ -29,9 +26,11 @@ export class Element {
         this.content = content;
         this.attributes = attributes;
         this.data = data;
+
+        this.elements = elements;
     }
 
-    // public find(selector: string) {
-    //     return find(this.body, selector);
-    // }
+    public find(selector: string) {
+        return find(this.elements, selector);
+    }
 }

@@ -6,9 +6,12 @@ type Deletion = { index: number; count: number; };
 export function _removeTags(elements: Array<string>) {
     let deletions: Array<Deletion> = [];
 
+
     elements.forEach(function(element, openIndex) {
         tags.forEach(function(tag) {
-            if (!element.includes(tag)) return;
+            const isOpening = element.match(regex(`<${tag}.*>`, "g")) !== null;
+            if (!isOpening) return;
+            if (element.includes("</")) return;
 
             const isClosingTag = element.match(regex(`</${tag}.*>`, "g")) !== null;
             if (isClosingTag) return;
