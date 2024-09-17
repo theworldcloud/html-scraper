@@ -1,6 +1,6 @@
+import { ParsedDocumentBody, ParsedDocumentElement, ParsedDocumentParentElement } from "../types";
+
 import { regex } from "./regex";
-import {ParsedDocumentBody, ParsedDocumentElement, ParsedDocumentParentElement} from "../types";
-import {P} from "vitest/dist/reporters-yx5ZTtEV";
 
 export function parseBody(tags: Array<string>) {
     const bodyOpenTag = tags.find(tag => tag.match(regex("<body.*>", "g")) !== null);
@@ -102,7 +102,7 @@ function _parse(elements: Array<string>) {
 }
 
 function _extractAttributes(html: string) {
-    const attributes: Record<string, string | number> = {};
+    const attributes: Record<string, string> = {};
     const elements = html.match(regex(`(.*?)=(["|'])(.*?)(["|'])`, "g")) ?? [];
 
     elements.forEach(function(element) {

@@ -1,7 +1,10 @@
-import { parse } from "./parser/parser";
 import { Response } from "node-fetch";
 import { ParsedDocumentElement } from "./types";
+
+import { parse } from "./parser/parser";
+
 import { find } from "./functions/find";
+import { findAll } from "./functions/findAll";
 
 export class Document {
     public readonly cookies: Record<string, string>;
@@ -37,6 +40,10 @@ export class Document {
 
     public find(selector: string) {
         return find(this.elements, selector);
+    }
+
+    public findAll(selector: string) {
+        return findAll(this.elements, selector);
     }
 }
 

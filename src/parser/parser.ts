@@ -1,7 +1,8 @@
+import { ParsedDocument, ParsedDocumentHead, ParsedDocumentBody } from "types";
+
 import { _removeTags } from "./_removeTags";
 import { parseHead } from "./parseHead";
 import { parseBody } from "./parseBody";
-import { ParsedDocument, ParsedDocumentHead, ParsedDocumentBody } from "types";
 import { _removeComments } from "./_removeComments";
 
 const entities: Array<string> = [ "\n", "\t", "\r" ];

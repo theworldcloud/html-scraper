@@ -1,4 +1,5 @@
 import { ParsedDocumentHead } from "types";
+
 import { regex } from "./regex";
 
 export function parseHead(tags: Array<string>) {

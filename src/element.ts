@@ -1,5 +1,7 @@
-import { find } from "functions/find";
-import {ParsedDocumentElement} from "./types";
+import { ParsedDocumentElement } from "./types";
+
+import { find } from "./functions/find";
+import { findAll } from "./functions/findAll";
 
 export class Element {
     public readonly tag: string;
@@ -32,5 +34,9 @@ export class Element {
 
     public find(selector: string) {
         return find(this.elements, selector);
+    }
+
+    public findAll(selector: string) {
+        return findAll(this.elements, selector);
     }
 }

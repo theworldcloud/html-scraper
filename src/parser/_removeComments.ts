@@ -1,5 +1,3 @@
-import { regex } from "./regex";
-
 type Deletion = { index: number; count: number; };
 
 export function _removeComments(elements: Array<string>) {

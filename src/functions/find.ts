@@ -1,6 +1,8 @@
 import { ParsedDocumentElement, Properties } from "../types";
-import { _extractProperties } from "./_extractProperties";
-import {Element} from "../element";
+import { Element } from "../element";
+
+import { _extractProperties } from "../utils/_extractProperties";
+import { _checkElements } from "../utils/_checkElements";
 
 export function find(elements: Array<ParsedDocumentElement>, selector: string) {
     const selectors = selector.split(">").map((selector) => selector.trim());
@@ -34,42 +36,24 @@ export function find(elements: Array<ParsedDocumentElement>, selector: string) {
         return child;
     });
 
-    const content = matchedElement.content;
+    const attributes: Record<string, string | number> = {};
+    const data: Record<string, string | number> = {};
 
-    const element = new Element(tag, id, classes, parent, children, content, matchedElement.attributes, matchedElement.data, matchedElement.children);
-    console.log(element)
-}
+    Object.keys(matchedElement.attributes).forEach(function(key) {
+        if (key === "id" || key === "class") return;
 
-function _checkElements(properties: Properties, elements: Array<ParsedDocumentElement>): ParsedDocumentElement | undefined {
-    let matchedElement: ParsedDocumentElement | undefined = undefined;
+        const isAttributeData = key.startsWith("data-");
+        const isValueNumber = !isNaN(Number(matchedElement.attributes[key]));
 
-    for (const element of elements) {
-        if (_doesElementMatchProperties(properties, element)) {
-            matchedElement = element;
-            break;
-        }
+        const modifiedKey = isAttributeData ? key.replace("data-", "") : key;
+        const value = isValueNumber ? Number(matchedElement.attributes[key]) : matchedElement.attributes[key];
 
-        if (element.children.length == 0) continue;
-        matchedElement = _checkElements(properties, element.children);
-        if (matchedElement) break;
-    }
-
-    return matchedElement;
-}
-
-function _doesElementMatchProperties(properties: Properties, element: ParsedDocumentElement): boolean {
-    const tagMatching = (properties.tag.length > 0 && element.tag == properties.tag) || properties.tag.length == 0;
-    const idMatching = (properties.id.length > 0 && element.attributes.id == properties.id) || properties.id.length == 0;
-
-    const elementClasses = (element.attributes.class ?? "").split(" ").filter((name: string) => name.length > 0);
-    let classMatching = true;
-    properties.class.forEach((className) => {
-        if (!elementClasses.includes(className)) {
-            classMatching = false;
-        }
+        if (isAttributeData) return data[modifiedKey] = value;
+        return attributes[modifiedKey] = value;
     });
 
-    classMatching = classMatching || properties.class.length == 0;
-
-    return tagMatching && idMatching && classMatching;
+    const content = matchedElement.content;
+    const element = new Element(tag, id, classes, parent, children, content, attributes, data, matchedElement.children);
+    return element;
 }
+

@@ -1,5 +1,6 @@
-import { regex } from "../parser/regex";
 import { Properties } from "../types";
+
+import { regex } from "../parser/regex";
 
 export function _extractProperties(selector: string) {
     const properties: Properties = { tag: "", id: "", class: [] };
