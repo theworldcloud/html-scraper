@@ -10,7 +10,7 @@ findAll: (selector: string) => Array<Element>;
 ```
 
 \
-A example of how to use the `find` function is provided below:
+A example of how to use the `findAll` function is provided below:
 ```typescript
 const elements = /** variable of document or element **/.findAll('span');
 ```
