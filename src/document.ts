@@ -23,6 +23,7 @@ export class Document {
             cookieStrings.forEach(function(cookie) {
                 cookie = cookie.trim();
                 const [ key, value ] = cookie.split("=");
+                if (key === "path" || key === "secure" || key === "HttpOnly" || key === "SameSite") return;
                 cookies[key] = value;
             });
         }

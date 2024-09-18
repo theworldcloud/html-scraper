@@ -3,6 +3,10 @@ export default {
     title: "html-scraper",
     description: "A simple HTML scraper",
 
+    head: [
+        [ "link", { rel: "icon", href: "assets/logo.svg" } ]
+    ],
+
     themeConfig: {
         lastUpdated: true,
         logo: "/assets/logo.svg",
@@ -18,12 +22,13 @@ export default {
             },
 
             {
-                text: "Usage", collapsed: true, items: [
+                text: "Usage", collapsed: false, items: [
                     { text: "Basic usage", link: "/usage" },
                     { text: "Types", link: "/types" },
 
-                    { text: "Functions", link: "/functions", collapsed: true, items: [
+                    { text: "Functions", link: "/functions", collapsed: false, items: [
                         { text: "find", link: "/functions/find" },
+                        { text: "findAll", link: "/functions/findAll" },
                     ]}
                 ]
             }
