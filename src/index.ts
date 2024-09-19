@@ -23,8 +23,15 @@ export async function scrape(url: string, options?: Options): Promise<Document> 
         headers: options?.headers ?? {}
     };
 
-    if (fetchOptions.method === "POST" && options?.body)
-        fetchOptions.body = JSON.stringify(options.body);
+    if (fetchOptions.method === "POST" && options?.body) {
+        if (options.body instanceof FormData) {
+            fetchOptions.body = options.body;
+        } else if (typeof options.body === "object") {
+            fetchOptions.body = JSON.stringify(options.body);
+        } else {
+            fetchOptions.body = options.body;
+        }
+    }
 
     const response = await fetch(url, fetchOptions);
     const html = await response.text();

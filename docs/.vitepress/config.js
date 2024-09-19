@@ -4,12 +4,12 @@ export default {
     description: "A simple HTML scraper",
 
     head: [
-        [ "link", { rel: "icon", href: "assets/logo.svg" } ]
+        [ "link", { rel: "icon", href: "/logo.svg" } ]
     ],
 
     themeConfig: {
         lastUpdated: true,
-        logo: "/assets/logo.svg",
+        logo: "/logo.svg",
         siteTitle: "html-scraper",
 
         socialLinks: [ { icon: "github", link: "https://github.com/theworldcloud" } ],
