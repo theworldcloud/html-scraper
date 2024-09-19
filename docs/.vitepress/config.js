@@ -25,6 +25,7 @@ export default {
                 }
             },
             { link: "https://github.com/theworldcloud", icon: "github" },
+            { link: "https://www.npmjs.com/package/twchtmlscraper", icon: "npm" },
         ],
 
         sidebar: [

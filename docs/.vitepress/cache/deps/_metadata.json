@@ -1,40 +1,40 @@
 {
-  "hash": "78dad900",
-  "configHash": "afe73617",
-  "lockfileHash": "162cdc6c",
-  "browserHash": "971ff74c",
+  "hash": "bbb91895",
+  "configHash": "4243430e",
+  "lockfileHash": "45ecd51b",
+  "browserHash": "11b9b330",
   "optimized": {
     "vue": {
-      "src": "../../../../node_modules/.pnpm/vue@3.4.38_typescript@5.4.5/node_modules/vue/dist/vue.runtime.esm-bundler.js",
+      "src": "../../../../node_modules/.pnpm/vue@3.5.6_typescript@5.6.2/node_modules/vue/dist/vue.runtime.esm-bundler.js",
       "file": "vue.js",
-      "fileHash": "4953f831",
+      "fileHash": "1b1ff41c",
       "needsInterop": false
     },
     "vitepress > @vue/devtools-api": {
-      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.3.8/node_modules/@vue/devtools-api/dist/index.js",
+      "src": "../../../../node_modules/.pnpm/@vue+devtools-api@7.4.5/node_modules/@vue/devtools-api/dist/index.js",
       "file": "vitepress___@vue_devtools-api.js",
-      "fileHash": "c6aecb01",
+      "fileHash": "0c193907",
       "needsInterop": false
     },
     "vitepress > @vueuse/core": {
-      "src": "../../../../node_modules/.pnpm/@vueuse+core@11.0.1_vue@3.4.38_typescript@5.4.5_/node_modules/@vueuse/core/index.mjs",
+      "src": "../../../../node_modules/.pnpm/@vueuse+core@11.1.0_vue@3.5.6_typescript@5.6.2_/node_modules/@vueuse/core/index.mjs",
       "file": "vitepress___@vueuse_core.js",
-      "fileHash": "5a4a93b6",
+      "fileHash": "f2262ebd",
       "needsInterop": false
     },
     "@theme/index": {
-      "src": "../../../../node_modules/.pnpm/vitepress@1.3.3_@algolia+client-search@4.24.0_@types+node@22.5.0_postcss@8.4.38_search-insights@2.16.3_typescript@5.4.5/node_modules/vitepress/dist/client/theme-default/index.js",
+      "src": "../../../../node_modules/.pnpm/vitepress@1.3.4_@algolia+client-search@4.24.0_@types+node@22.5.0_postcss@8.4.47_search-insights@2.16.3_typescript@5.6.2/node_modules/vitepress/dist/client/theme-default/index.js",
       "file": "@theme_index.js",
-      "fileHash": "4db654c9",
+      "fileHash": "1a3a7bff",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-HM3UUO4Z": {
-      "file": "chunk-HM3UUO4Z.js"
+    "chunk-7LO6GXEW": {
+      "file": "chunk-7LO6GXEW.js"
     },
-    "chunk-3LINPEQT": {
-      "file": "chunk-3LINPEQT.js"
+    "chunk-T4DCV24Y": {
+      "file": "chunk-T4DCV24Y.js"
     }
   }
 }
