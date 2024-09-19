@@ -8,5 +8,3 @@ async function test() {
     console.log("");
     console.log(element);
 }
-
-test();

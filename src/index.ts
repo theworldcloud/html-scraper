@@ -13,16 +13,18 @@ export async function scrape(url: string, options?: Options): Promise<Document> 
         });
 
         if (!options.headers) options.headers = {};
-        options.headers.cookie = cookies.join("");
+        options.headers["Cookie"] = cookies.join("");
     }
 
     const fetchOptions: RequestInit = {
+        redirect: "follow",
+
         method: options?.method ?? "GET",
         headers: options?.headers ?? {}
     };
 
-    if (fetchOptions.method === "POST")
-        fetchOptions.body = JSON.stringify(options?.body ?? {});
+    if (fetchOptions.method === "POST" && options?.body)
+        fetchOptions.body = JSON.stringify(options.body);
 
     const response = await fetch(url, fetchOptions);
     const html = await response.text();
