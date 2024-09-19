@@ -1,9 +1,9 @@
 {
   "name": "twchtmlscraper",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A simple HTML",
   "author": "Mathias Sørensen",
-  "main": "../../dist/index.js",
+  "main": "index.js",
   "types": "types.d.ts",
 
   "devDependencies": {
