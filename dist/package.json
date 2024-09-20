@@ -1,10 +1,8 @@
 {
   "name": "twchtmlscraper",
-  "version": "1.0.3",
-  "description": "A simple HTML",
+  "version": "1.0.6",
   "author": "Mathias Sørensen",
   "main": "index.js",
-  "types": "types.d.ts",
 
   "devDependencies": {
     "node-fetch": "^3.3.2"

@@ -1,8 +1,14 @@
 import fetch, { RequestInit } from "node-fetch";
 import { Document } from "./document";
-import { Options } from "./types";
 
-export async function scrape(url: string, options?: Options): Promise<Document> {
+interface Options {
+    method?: "GET" | "POST";
+    headers?: Record<string, string>;
+    cookies?: Record<string, string>;
+    body?: Record<string, string> | FormData | string;
+}
+
+async function scrape(url: string, options?: Options): Promise<Document> {
     if (options?.cookies) {
         const cookies: Array<string> = [];
 
@@ -38,3 +44,5 @@ export async function scrape(url: string, options?: Options): Promise<Document> 
 
     return new Document(html, url, response);
 }
+
+export { scrape, type Options };

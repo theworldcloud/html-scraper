@@ -1,9 +1,3 @@
-export interface Options {
-    method?: "GET" | "POST";
-    headers?: Record<string, string>;
-    cookies?: Record<string, string>;
-    body?: Record<string, string> | FormData | string;
-}
 
 export interface ParsedDocument {
     html: string;
