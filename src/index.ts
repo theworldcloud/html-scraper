@@ -5,7 +5,7 @@ interface Options {
     method?: "GET" | "POST";
     headers?: Record<string, string>;
     cookies?: Record<string, string>;
-    body?: Record<string, string> | FormData | string;
+    body?: any;
 }
 
 async function scrape(url: string, options?: Options): Promise<Document> {
@@ -30,13 +30,7 @@ async function scrape(url: string, options?: Options): Promise<Document> {
     };
 
     if (fetchOptions.method === "POST" && options?.body) {
-        if (options.body instanceof FormData) {
-            fetchOptions.body = options.body;
-        } else if (typeof options.body === "object") {
-            fetchOptions.body = JSON.stringify(options.body);
-        } else {
-            fetchOptions.body = options.body;
-        }
+        fetchOptions.body = options.body;
     }
 
     const response = await fetch(url, fetchOptions);

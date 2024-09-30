@@ -1,5 +1,4 @@
 import { scrape } from "../src";
-import {Options} from "../src/types";
 
 async function test() {
     const doc = await scrape("https://example.com/");
