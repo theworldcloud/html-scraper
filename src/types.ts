@@ -1,3 +1,4 @@
+import type { RequestInit } from "node-fetch";
 
 export interface ParsedDocument {
     html: string;
@@ -35,4 +36,15 @@ export interface Properties {
     tag: string;
     id: string;
     class: Array<string>;
+}
+
+export interface Options extends RequestInit {
+    headers?: Record<string, string>;
+    cookies?: Record<string, string>;
+}
+
+export interface Cookie {
+    key: string;
+    value: string;
+    expires?: number;
 }

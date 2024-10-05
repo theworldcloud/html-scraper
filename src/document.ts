@@ -1,5 +1,5 @@
 import { Response } from "node-fetch";
-import { ParsedDocumentElement } from "./types";
+import { Cookie, ParsedDocumentElement } from "./types";
 
 import { parse } from "./parser/parser";
 
@@ -7,7 +7,7 @@ import { find } from "./functions/find";
 import { findAll } from "./functions/findAll";
 
 export class Document {
-    public readonly cookies: Record<string, string>;
+    public readonly cookies: Record<string, Cookie>;
 
     public readonly url: string | undefined;
     public readonly html: string;
@@ -16,15 +16,23 @@ export class Document {
     private readonly elements: Array<ParsedDocumentElement>;
 
     constructor(html: string, url: string, response: Response) {
-        const cookies: Record<string, string> = {};
-        const responseCookies = response.headers.get("set-cookie");
+        const cookies: Record<string, Cookie> = {};
+        const responseCookies = response.headers.raw()["set-cookie"];
+
         if (responseCookies) {
-            const cookieStrings = responseCookies.split(";");
-            cookieStrings.forEach(function(cookie) {
-                cookie = cookie.trim();
-                const [ key, value ] = cookie.split("=");
-                if (key === "path" || key === "secure" || key === "HttpOnly" || key === "SameSite" || key === "expires") return;
-                cookies[key] = value;
+            responseCookies.forEach(function (responseCookie) {
+                const props = responseCookie.split("; ");
+                const [ key, value ] = props[0].split("=");
+
+                const cookie: Cookie = { key, value };
+
+                const expires = props.find(prop => prop.startsWith("expires="));
+                if (expires) {
+                    const expire = expires.split("=")[1];
+                    cookie.expires = new Date(expire).getTime();
+                }
+
+                cookies[key] = cookie;
             });
         }
 

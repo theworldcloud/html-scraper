@@ -10,4 +10,3 @@ async function test() {
 }
 
 test();
-

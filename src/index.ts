@@ -1,12 +1,6 @@
-import fetch, { RequestInit } from "node-fetch";
+import fetch from "node-fetch";
 import { Document } from "./document";
-
-interface Options {
-    method?: "GET" | "POST";
-    headers?: Record<string, string>;
-    cookies?: Record<string, string>;
-    body?: any;
-}
+import type { Options } from "./types";
 
 async function scrape(url: string, options?: Options): Promise<Document> {
     if (options?.cookies) {
@@ -22,18 +16,7 @@ async function scrape(url: string, options?: Options): Promise<Document> {
         options.headers["Cookie"] = cookies.join("");
     }
 
-    const fetchOptions: RequestInit = {
-        redirect: "follow",
-
-        method: options?.method ?? "GET",
-        headers: options?.headers ?? {}
-    };
-
-    if (fetchOptions.method === "POST" && options?.body) {
-        fetchOptions.body = options.body;
-    }
-
-    const response = await fetch(url, fetchOptions);
+    const response = await fetch(url, options);
     const html = await response.text();
 
     return new Document(html, url, response);
