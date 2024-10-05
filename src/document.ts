@@ -28,8 +28,8 @@ export class Document {
 
                 const expires = props.find(prop => prop.startsWith("expires="));
                 if (expires) {
-                    const expire = expires.split("=")[1];
-                    cookie.expires = new Date(expire).getTime() / 1000;
+                    const expire = new Date(expires.split("=")[1]);
+                    cookie.expires = Math.floor(expire.getTime() / 1000);
                 }
 
                 cookies[key] = cookie;
